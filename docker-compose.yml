@@ -1,0 +1,15 @@
+services:
+  app:
+    container_name: the_root_directory
+    build: .
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - DJANGO_TRUSTED_ORIGINS=${DJANGO_TRUSTED_ORIGINS}
+    env_file:
+      - .env
+    volumes:
+      - /var/www/therootdirectory.org:/app/the_root_directory/staticfiles/
+    ports:
+      - "8000:8000"
