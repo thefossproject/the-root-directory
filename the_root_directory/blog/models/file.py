@@ -6,7 +6,7 @@ from .owner import Owner
 
 class File(models.Model):
     title = models.CharField(max_length=70)
-    content = models.TextField(max_length=2000)
+    content = models.TextField(max_length=10000)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=70, default="", null=False)
