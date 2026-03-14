@@ -11,7 +11,7 @@
 <div class="terminal container-fluid">
     <ul>
         {% for file in file_list %}
-        <li class="file">-rw-r--r-- {{ file.owner.nickname }} {{file.size_in_kilobytes}} {{ file.created_at|date:"M j Y" }}
+        <li class="file">-rw-r--r-- {{ file.owner.user.username }} {{file.size_in_kilobytes}} {{ file.created_at|date:"M j Y" }}
             <a class="title-link" href="{{ file.get_absolute_url }}">{{ file.title }}</a>
         </li>
         {% endfor %}
