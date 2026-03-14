@@ -8,14 +8,14 @@
 {% block content %}
 <div class="container">
     <h1 class="file-title">{{ file.title }}</h1>
-    <h5>{{ file.owner.nickname }}</h5>
+    <h5>{{ file.owner.user.username }}</h5>
     <p>{{ file.created_at|date:"M j Y" }}</p>
     <hr>
     <p>{{ markdown_content|safe }}</p>
     <hr>
     <div>
-        <h5>{{ file.owner.name }}</h5>
-        <hp>{{ file.owner.nickname }}</p>
+        <h5>{{ file.owner.user.first_name }} {{ file.owner.user.last_name }}</h5>
+        <hp>{{ file.owner.user.username }}</p>
         <p>{{ file.owner.biography }}</p>
     </div>
 </div>
