@@ -9,6 +9,7 @@ dependencies = [
     "python-dotenv==1.2.1",
     "markdown>=3.10.2",
     "gunicorn>=25.1.0",
+    "psycopg[binary]>=3.3.3",
 ]
 [dependency-groups]
 dev = [
