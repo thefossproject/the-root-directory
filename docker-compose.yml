@@ -13,3 +13,10 @@ services:
       - /var/www/therootdirectory.org:/app/the_root_directory/staticfiles/
     ports:
       - "8000:8000"
+    networks:
+      - trd-network
+
+networks:
+  trd-network:
+    external: true
+    name: trd-network
