@@ -9,7 +9,7 @@
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
     {% block extra-head %}{% endblock %}
 </head>
 
@@ -29,16 +29,29 @@
                     <a class="nav-link" href="{% url 'files' %}">Files</a>
                 </li>
                 <li class="nav-item">
+                    {% if user.is_authenticated %}
+                    <a class="nav-link" tabindex="-1" aria-disabled="true">ls ./{{ user.username }}</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn-logout nav-link" type="submit" tabindex="-1" aria-disabled="true">Log
+                            out</button>
+                    </form>
+                    {% else %}
                     <a class="nav-link" href="{% url 'login' %}" tabindex="-1" aria-disabled="true">Login</a>
+                    {% endif %}
                 </li>
             </ul>
         </div>
     </nav>
     {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" zaria-label="Close"></button>
-        </div>
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" zaria-label="Close"></button>
+    </div>
     {% endfor %}
     <main class="flex-grow-1 min-vh-100">
         {% block content %}{% endblock %}

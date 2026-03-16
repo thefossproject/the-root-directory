@@ -1,6 +1,6 @@
-from django.urls import path
+from django.urls import include, path
 
-from blog.views import FileDetailView, FilesView, LoginView, RegisterView
+from blog.views import FileDetailView, FilesView, RegisterView
 
 from . import views
 
@@ -8,7 +8,7 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("files/", FilesView.as_view(), name="files"),
     path("files/<int:pk>/<slug:slug>/", FileDetailView.as_view(), name="file_detail"),
-    path("owner/login/", LoginView.as_view(), name="login"),
+    path("accounts/", include("django.contrib.auth.urls")),
     path("owner/register/", RegisterView.as_view(), name="register"),
     path("owner/welcome/", views.welcome, name="welcome"),
 ]
