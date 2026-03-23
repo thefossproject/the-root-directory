@@ -1,6 +1,6 @@
 import markdown
 from django.contrib import messages
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db import transaction
 from django.shortcuts import redirect, render
@@ -42,9 +42,10 @@ class RegisterView(View):
     template_name = "blog/register.html"
 
     def get_forms(self, data):
+        user_auth_form = UserCreationForm(data.POST)
         user_form = UserForm(data.POST or None)
         owner_form = OwnerForm(data.POST or None)
-        return {"user_form": user_form, "owner_form": owner_form}
+        return {"user_form": user_form, "owner_form": owner_form, "user_auth_form": user_auth_form}
 
     def get(self, request):
         return render(request, self.template_name, self.get_forms(request))
@@ -53,8 +54,10 @@ class RegisterView(View):
         forms = self.get_forms(request)
         if all(form.is_valid() for form in forms.values()):
             with transaction.atomic():
+                auth_user: User = forms["user_auth_form"].save(commit=False)
                 user: User = forms["user_form"].save(commit=False)
-                user.password = make_password(user.password)
+                user.username = auth_user.username
+                user.password = auth_user.password
                 user.save()
                 owner: Owner = forms["owner_form"].save(commit=False)
                 owner.user = user
@@ -62,13 +65,6 @@ class RegisterView(View):
                 messages.success(request, "Owner created successfully!")
             return redirect("welcome")
         return render(request, self.template_name, forms)
-
-
-class LoginView(View):
-    template_name = "blog/login.html"
-
-    def get(self, request):
-        return render(request, self.template_name)
 
 
 def welcome(request):

@@ -11,11 +11,11 @@
     background-color: #FAD500;
 }
 
-.navbar a {
+.navbar .nav-link {
     color: black;
 }
 
-.navbar a:hover {
+.navbar .nav-link:hover {
     background-color: black;
     color: #FAD500;
 }
