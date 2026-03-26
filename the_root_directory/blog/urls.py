@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from blog.views import FileDetailView, FilesView, RegisterView
+from blog.views import FileDetailView, FilesView, OwnerFilesView, RegisterView
 
 from . import views
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("owner/register/", RegisterView.as_view(), name="register"),
     path("owner/welcome/", views.welcome, name="welcome"),
+    path("owner/files", OwnerFilesView.as_view(), name="owner_files"),
 ]

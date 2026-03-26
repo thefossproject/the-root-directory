@@ -21,6 +21,26 @@ class FilesView(ListView):
     paginate_by = 5
     context_object_name = "file_list"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "CHECK SOME ROOT FILES"
+        context["description"] = "Learn something new today!"
+        return context
+
+
+class OwnerFilesView(View):
+    template_name = "blog/file_list.html"
+
+    def get(self, request):
+        print(request.user)
+        if request.user.is_authenticated:
+            context = {"file_list": File.objects.filter(owner__user=request.user.id)}
+            context["title"] = "YOUR ROOT FILES"
+            context["description"] = "Look what you have created!"
+            return render(request, self.template_name, context)
+        else:
+            return redirect("login")
+
 
 class FileDetailView(DetailView):
     model = File
