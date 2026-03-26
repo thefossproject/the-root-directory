@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="title">SOME ROOT FILES:</h1>
-<p>Learn something new today!</p>
+<h1 class="title">{{title}}</h1>
+<h4 class="description">{{ description }}</h4>
+
 <div class="terminal container-fluid">
     <ul>
         {% for file in file_list %}
@@ -17,6 +18,7 @@
         {% endfor %}
     </ul>
 </div>
+{% if page_obj %}
 <div class="pagination">
     <span class="page-links">
         {% if page_obj.has_previous %}
@@ -30,4 +32,10 @@
         {% endif %}
     </span>
 </div>
+{% endif %}
+
+{% if user.is_authenticated %}
+<button class="btn btn-warning">touch new_file.md</button>
+{% endif %}
+
 {% endblock %}

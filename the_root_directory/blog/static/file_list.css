@@ -7,6 +7,9 @@
     color: #FAD500;
     list-style-type: none;
 }
+.description {
+    color: #FAD500;
+}
 
 p {
     color: #FAD500;
@@ -26,6 +29,8 @@ p {
 .terminal {
     background-color: #212529;
     height: 50vh;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .pagination {

@@ -21,7 +21,7 @@ The Root Directory is an open-source project that focuses on tech writing by and
 **Stack & conventions:**
 
 - Python 3.13, Django 6.0.2
-- DB Pending to define
+- Psycopg 3.3 (PostgreSQL)
 - Ruff for linting & formatting
 - Semantic versioning 2.0.0 [More information](https://semver.org/spec/v2.0.0.html)
 - Angular commit message conventions
