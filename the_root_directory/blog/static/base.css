@@ -26,9 +26,8 @@ body {
 }
 
 .footer {
-    color: white;
-    background-color: black;
     text-align: center;
+    position: fixed;
     bottom: 0;
     height: 2.5rem;
     margin:0;
