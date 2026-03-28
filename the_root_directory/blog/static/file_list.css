@@ -7,6 +7,7 @@
     color: #FAD500;
     list-style-type: none;
 }
+
 .description {
     color: #FAD500;
 }
@@ -29,9 +30,11 @@ p {
 .terminal {
     background-color: #212529;
     height: fit-content;
+    min-height: 400px;
     margin-top: 2%;
     margin-bottom: 1%;
     border-radius: 2px;
+    padding-bottom: 5px;
 }
 
 .pagination {
@@ -58,4 +61,8 @@ p {
 
 .content {
     margin: 5px;
+}
+
+.pag-previous, .pag-next {
+    color: #FAD500;
 }
