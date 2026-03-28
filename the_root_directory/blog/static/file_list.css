@@ -28,11 +28,34 @@ p {
 
 .terminal {
     background-color: #212529;
-    height: 50vh;
+    height: fit-content;
     margin-top: 2%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
+    border-radius: 2px;
 }
 
 .pagination {
     color: #FAD500;
+    margin-bottom: 10px;
+}
+
+.create-btn {
+    color: black;
+    background-color: #FAD500;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.create-btn:hover {
+    background-color: black;
+    color: #FAD500;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid #FAD500;
+}
+
+.content {
+    margin: 5px;
 }

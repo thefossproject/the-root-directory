@@ -53,12 +53,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" zaria-label="Close"></button>
     </div>
     {% endfor %}
-    <main class="flex-grow-1 min-vh-100">
+    <main class="flex-grow-1">
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <div>
-            <p class="footer">&copy; The Root Directory</p>
+        <div class="container footer">
+            <p>&copy; The Root Directory</p>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

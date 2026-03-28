@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from blog.views import FileDetailView, FilesView, OwnerFilesView, RegisterView
+from blog.views import CreateFileView, FileDetailView, FilesView, OwnerFilesView, RegisterView
 
 from . import views
 
@@ -12,4 +12,5 @@ urlpatterns = [
     path("owner/register/", RegisterView.as_view(), name="register"),
     path("owner/welcome/", views.welcome, name="welcome"),
     path("owner/files", OwnerFilesView.as_view(), name="owner_files"),
+    path("files/create", CreateFileView.as_view(), name="create_file"),
 ]
