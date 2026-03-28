@@ -1,0 +1,29 @@
+name: Continuous Integration
+on:
+  push:
+    branches:
+      - 'feat/**'
+      - 'fix/**'
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - 'develop'
+      - 'main'
+jobs:
+  ci:
+    name: Linter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: "Set up Python"
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: ".python-version"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+      - name: Install project
+        run: uv sync --locked --all-extras --dev
+      - name: Run ruff linter
+        run: uv run ruff check . --output-format=github

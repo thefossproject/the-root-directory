@@ -1,0 +1,30 @@
+p {
+    color: #FAD500;
+}
+
+li {
+    color: #FAD500;
+}
+
+.errorlist {
+    display: none;
+}
+
+.helptext {
+    display: none;
+}
+
+[id^="id"] {
+    background-color: #161b22;
+    color: #e6edf3;
+    border-radius: 5px;
+}
+
+#id_biography {
+    height: 100px;
+}
+
+label {
+    display: block;
+    padding-bottom: 5px;
+}

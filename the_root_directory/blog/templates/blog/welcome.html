@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-head %}
+<link rel="stylesheet" href="{% static 'home.css'%}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome!</h1>
+    <a href="{% url 'create_file' %}">touch new_file.md</a>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-head %}
+<link rel="stylesheet" href="{% static 'home.css'%}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1 class="title">BE THE REAL SUPER USER,</h1>
+            <h1 class="title">SHARE YOUR KNOWLEDGE</h1>
+            <p>Create original content where you can show that</p>
+            <p>humans are still the owners of their files</p>
+        </div>
+        <div class="col-sm">
+            <p class="cursor typewriter-animation">The Root Directory.</p>
+        </div>
+    </div>
+    {% endblock %}

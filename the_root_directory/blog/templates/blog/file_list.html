@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-head %}
+<link rel="stylesheet" href="{% static 'file_list.css'%}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1 class="title">{{title}}</h1>
+    <h4 class="description">{{ description }}</h4>
+
+    <div class="terminal">
+        <ul>
+            {% for file in file_list %}
+            <li class="file">-rw-r--r-- {{ file.owner.user.username }} {{file.size_in_kilobytes}}K {{ file.created_at|date:"M j Y" }}
+                <a class="title-link" href="{{ file.get_absolute_url }}">{{ file.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% if page_obj %}
+    <div class="pagination">
+        <span class="page-links">
+            {% if page_obj.has_previous %}
+            <a class="pag-previous" href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="page-current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+            <a class="pag-next" href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <a class="create-btn" href="{% url 'create_file' %}">touch new_file.md</a>
+    {% endif %}
+</div>
+{% endblock %}

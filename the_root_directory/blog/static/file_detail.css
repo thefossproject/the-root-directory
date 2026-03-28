@@ -1,0 +1,15 @@
+.container {
+    background-color: #0d1117;
+    color: #e6edf3;
+}
+
+.file-title {
+    color: #e6edf3;
+}
+
+pre {
+    background-color: #0d1117;
+    padding: 1rem;
+    border-radius: 5px;
+    color: #e6edf3;
+}

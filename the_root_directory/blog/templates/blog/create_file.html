@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-head %}
+<link rel="stylesheet" href="{% static 'create_file.css'%}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>CREATE A NEW FILE</h1>
+    <form method="POST">
+        <div>
+            {% csrf_token %}
+            {{ file_form.as_p }}
+            <button type="submit" class="btn btn-warning">Create</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

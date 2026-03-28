@@ -1,0 +1,68 @@
+@font-face {
+    font-family: "UbuntuMono-Italic";
+    src: url("fonts/UbuntuMono-Italic.ttf") format("truetype");
+}
+
+.file {
+    color: #FAD500;
+    list-style-type: none;
+}
+
+.description {
+    color: #FAD500;
+}
+
+p {
+    color: #FAD500;
+}
+
+.title-link {
+    color: #FAD500;
+    font-family: 'UbuntuMono-Italic', sans-serif;
+    text-decoration: none;
+}
+
+.title-link:hover {
+    color: #DF152B;
+    text-decoration: none;
+}
+
+.terminal {
+    background-color: #212529;
+    height: fit-content;
+    min-height: 400px;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    border-radius: 2px;
+    padding-bottom: 5px;
+}
+
+.pagination {
+    color: #FAD500;
+    margin-bottom: 10px;
+}
+
+.create-btn {
+    color: black;
+    background-color: #FAD500;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.create-btn:hover {
+    background-color: black;
+    color: #FAD500;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid #FAD500;
+}
+
+.content {
+    margin: 5px;
+}
+
+.pag-previous, .pag-next {
+    color: #FAD500;
+}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-head %}
+<link rel="stylesheet" href="{% static 'register.css'%}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Create your account</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{user_form.as_p}}
+        {{user_auth_form.as_p}}
+        {{owner_form.as_p}}
+        <button type="submit" class="btn btn-warning">Create</button>
+    </form>
+</div>
+{% endblock %}

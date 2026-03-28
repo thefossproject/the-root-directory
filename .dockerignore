@@ -1,0 +1,8 @@
+__pycache__
+.env
+.git
+db.sqlite3
+.python-version
+.DS_Store
+.gitignore
+docs/

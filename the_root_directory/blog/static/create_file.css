@@ -1,0 +1,36 @@
+[id^="id"] {
+    font-size: large;
+    background-color: #161b22;
+    color: #e6edf3;
+    border-radius: 5px;
+}
+
+#id_title {
+    width: 650px;
+}
+
+#id_content {
+    width: 70em;
+    min-height: 500px;
+}
+
+.errorlist {
+    display: none;
+}
+
+label {
+    display: none;
+}
+
+h1 {
+    color: #FAD500;
+}
+
+.modal-content {
+    background-color: #0d1117;
+    color: #e6edf3;
+}
+
+.btn-close {
+    background-color: #e6edf3;
+}

@@ -1,0 +1,35 @@
+[project]
+name = "the-root-directory"
+version = "0.1.0"
+description = "Be the real super user!"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "Django==6.0.2",
+    "python-dotenv==1.2.1",
+    "markdown>=3.10.2",
+    "gunicorn>=25.1.0",
+    "psycopg[binary]>=3.3.3",
+]
+[dependency-groups]
+dev = [
+    "ruff>=0.15.2",
+    "coverage==7.13.4",
+]
+[tool.ruff]
+line-length = 100
+exclude = [
+    "**/migrations/**"
+]
+[tool.ruff.lint]
+select = [
+    "E",
+    "W",
+    "F",
+    "I",
+    "N",
+    "B",
+    "DJ",
+]
+[tool.ruff.format]
+line-ending = "lf"
