@@ -6,19 +6,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="content">
+<div class="content py-5 ps-4 pe-4">
     <h1 class="title">{{title}}</h1>
     <h4 class="description">{{ description }}</h4>
-
-    <div class="terminal">
-        <ul>
-            {% for file in file_list %}
-            <li class="file">-rw-r--r-- {{ file.owner.user.username }} {{file.size_in_kilobytes}}K {{ file.created_at|date:"M j Y" }}
-                <a class="title-link" href="{{ file.get_absolute_url }}">{{ file.title }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+    {% include 'blog/terminal.html' %}
     {% if page_obj %}
     <div class="pagination">
         <span class="page-links">

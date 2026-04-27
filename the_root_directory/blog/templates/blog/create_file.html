@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>CREATE A NEW FILE</h1>
-    <form method="POST">
+<div class="container py-5">
+    <h1 class="create-file-text">touch <span class="title">new_file.md</span></h1>
+    <form class="create-file-text" method="POST">
         <div>
             {% csrf_token %}
             {{ file_form.as_p }}

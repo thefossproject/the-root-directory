@@ -6,15 +6,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1 class="title">WELCOME BACK</h1>
-    <h1 class="title">Sign in to your account</h1>
-    <form method="post">
+<div class="container py-5">
+    <h1 class="login-text">Welcome <span class="title">back</span><br>sudo su <span class="title">username</span></h1>
+    <form class="py-5" method="post">
         {% csrf_token %}
         {{ form }}
         <button type="submit" class="btn btn-dark">Login</button>
     </form>
-    <p>Don't have an account?</p>
+    <p class="login-text">Don't have an account?</p>
     <a type="button" class="btn btn-warning" href="{% url 'register' %}">Create one. It's free!</a>
 </div>
 {% endblock %}

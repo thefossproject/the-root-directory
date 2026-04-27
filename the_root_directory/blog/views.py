@@ -12,14 +12,18 @@ from .utils.markdown import create_markdown_content
 
 
 def home(request):
-    recent_files = File.objects.order_by("-created_at")[:2]
+    recent_files = File.objects.order_by("-created_at")[:3]
     context = {"recent_files": recent_files}
     return render(request, "blog/home.html", context)
 
 
+def about(request):
+    return render(request, "blog/about.html")
+
+
 class FilesView(ListView):
     model = File
-    paginate_by = 5
+    paginate_by = 10
     context_object_name = "file_list"
 
     def get_context_data(self, **kwargs):

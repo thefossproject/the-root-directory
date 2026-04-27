@@ -22,8 +22,8 @@ label {
     display: none;
 }
 
-h1 {
-    color: #FAD500;
+.create-file-text {
+    color: #e6edf3;
 }
 
 .modal-content {

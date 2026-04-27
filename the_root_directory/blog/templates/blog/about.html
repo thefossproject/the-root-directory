@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-head %}
+<link rel="stylesheet" href="{% static 'about.css'%}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="about-text">Built in the <span class="title">open</span>,<br> run by and for the <span class="title">community</span>.</h1>
+    <p class="about-text">No subscriptions, no payments. Just practical knowledge, shared openly.</p>
+</div>
+{% endblock %}

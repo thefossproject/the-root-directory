@@ -3,19 +3,118 @@
 
 {% block extra-head %}
 <link rel="stylesheet" href="{% static 'home.css'%}">
+<link rel="stylesheet" href="{% static 'file_list.css'%}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row py-5">
         <div class="col-sm">
-            <h1 class="title">BE THE REAL SUPER USER,</h1>
-            <h1 class="title">SHARE YOUR KNOWLEDGE</h1>
-            <p>Create original content where you can show that</p>
-            <p>humans are still the owners of their files</p>
+            <h1 class="home-text">BE THE REAL <span class="title">SUPERUSER</span>.<br>SHARE YOUR KNOWLEDGE.</h1>
+            <p class="home-text">Create original content where you can show that<br>humans are still the owners of their files</p>
+            {% if user.is_authenticated %}
+                <a class="create-btn" href="{% url 'create_file' %}">touch new_file.md</a>
+            {% else %}
+                <a class="create-btn" href="{% url 'login' %}" tabindex="-1" aria-disabled="true">sudo su</a>
+            {% endif %}
         </div>
-        <div class="col-sm">
-            <p class="cursor typewriter-animation">The Root Directory.</p>
+        <div class="col-sm d-flex align-items-center justify-content-center">
+            <p class="cursor typewriter-animation title">The Root Directory.</p>
+        </div>
+    </div>
+    <div class="row py-5">
+        <h1 class="title">Features</h1>
+        <div class="col">
+            <div class="card text-bg-dark h-100">
+                <i class="bi bi-search icon"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Learn</h5>
+                    <p class="card-text">find ./files -type f</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-bg-dark h-100">
+                <i class="bi bi-filetype-md icon"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Create</h5>
+                    <p class="card-text">touch ./new_file.md</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-bg-dark h-100">
+                <i class="bi bi-share-fill icon"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Share</h5>
+                    <p class="card-text">scp new_file root@therootdirectory.org:/</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-5">
+        <h1 class="title">Latest publications</h1>
+        <div class="col">
+            {% include 'blog/terminal.html' with file_list=recent_files %}
+        </div>
+    </div>
+    <div class="row py-5">
+        <h1 class="title">How it works</h1>
+        <div class="col">
+            <div class="card text-bg-dark h-100 rounded-5">
+                <i class="bi bi-person-fill-add icon"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Sign up</h5>
+                    <p class="card-text">Create a new account</p>
+                </div>
+            </div>
+        </div>
+        <div class="col d-flex align-items-center justify-content-center">
+            <div class="col-auto">
+                <i class="bi bi-arrow-right icon"></i>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-bg-dark h-100 rounded-5">
+                <i class="bi bi-markdown-fill icon"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Add a new file</h5>
+                    <p class="card-text">Write Markdown with a live rendered preview</p>
+                </div>
+            </div>
+        </div>
+        <div class="col d-flex align-items-center justify-content-center">
+            <div class="col-auto text-center">
+                <i class="bi bi-arrow-right icon"></i>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-bg-dark h-100 rounded-5">
+                <i class="bi bi-rocket-takeoff-fill icon"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Publish</h5>
+                    <p class="card-text">Share your knowledge with the community</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row py-5">
+        <div class="col">
+            <!-- <h1 class="title">Join!</h1> -->
+            <div class="card text-bg-dark rounded-5">
+                <div class="card-body text-center">
+                    <i class="bi bi-terminal fs-1"></i>
+                    <p class="card-text">Join the community and start creating.<br>Remember, it is free and open source!
+                    </p>
+                    {% if user.is_authenticated %}
+                        <a class="create-btn" href="{% url 'create_file' %}">touch new_file.md</a>
+                    {% else %}
+                        <a class="create-btn" href="{% url 'login' %}" tabindex="-1"
+                            aria-disabled="true">sudo su</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
     {% endblock %}
