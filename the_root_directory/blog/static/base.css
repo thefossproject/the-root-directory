@@ -25,10 +25,7 @@ body {
     font-family: "UbuntuMono", sans-serif;
 }
 
-.footer p{
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    color: #e6edf3;
+.footer-text {
+    color:#e6edf3;
+
 }

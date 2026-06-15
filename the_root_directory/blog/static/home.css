@@ -5,8 +5,14 @@
     src: url("fonts/UbuntuMono-Italic.ttf") format("truetype");
 }
 
-p {
-    color: #FAD500;
+.home-text {
+    color: #e6edf3;
+}
+
+.icon {
+   font-size: 4rem;
+   text-align: center;
+   color: #e6edf3;
 }
 
 .cursor {
@@ -19,7 +25,6 @@ p {
     white-space: nowrap;
     overflow: hidden;
     transform: translateY(-50%);
-    margin-top: 10em;
 }
 
 .typewriter-animation {

@@ -1,0 +1,9 @@
+<div class="terminal">
+    <ul>
+        {% for file in file_list %}
+        <li class="file">-rw-r--r-- {{ file.owner.user.username }} {{file.size_in_kilobytes}}K {{file.created_at|date:"M j Y" }}
+            <a class="title-link" href="{{ file.get_absolute_url }}">{{ file.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1 class="title">Create your account</h1>
-    <form method="post">
+<div class="container py-5">
+    <h1 class="register-text">sudo useradd <span class="title">username</span></h1>
+    <form class="register-text" method="post">
         {% csrf_token %}
         {{user_form.as_p}}
         {{user_auth_form.as_p}}

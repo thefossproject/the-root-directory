@@ -4,20 +4,16 @@
 }
 
 .file {
-    color: #FAD500;
+    color: #e6edf3;
     list-style-type: none;
 }
 
 .description {
-    color: #FAD500;
-}
-
-p {
-    color: #FAD500;
+    color: #e6edf3;
 }
 
 .title-link {
-    color: #FAD500;
+    color: #e6edf3;
     font-family: 'UbuntuMono-Italic', sans-serif;
     text-decoration: none;
 }
