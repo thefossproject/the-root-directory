@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand ps-4" href="{% url 'home' %}">The Root Directory</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item ps-2">
+                <a class="nav-link" href="{% url 'home' %}">cd /home</a>
+            </li>
+            <li class="nav-item ps-2">
+                <a class="nav-link" href="{% url 'files' %}">ls ./files</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item ps-2">
+                <a class="nav-link" tabindex="-1" aria-disabled="true" href="{% url 'owner_files' %}">ls /{{ user.username }}</a>
+            </li>
+            {% endif %}
+            <li class="nav-item ps-2 pe-4">
+                {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn-logout nav-link" type="submit" tabindex="-1" aria-disabled="true">exit</button>
+                </form>
+                {% else %}
+                <a class="nav-link" href="{% url 'login' %}" tabindex="-1" aria-disabled="true">sudo su</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</nav>

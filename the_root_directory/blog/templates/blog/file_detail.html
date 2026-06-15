@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="file-detail-container py-5 ps-4 pe-4">
     <h1 class="file-title">{{ file.title }}</h1>
     <h5>{{ file.owner.user.username }}</h5>
     <p>{{ file.created_at|date:"M j Y" }}</p>
