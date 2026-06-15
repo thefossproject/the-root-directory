@@ -3,17 +3,31 @@
 
 {% block extra-head %}
 <link rel="stylesheet" href="{% static 'create_file.css'%}">
+<script src="{% static 'js/markdown_preview.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
 <div class="container py-5">
-    <h1 class="create-file-text">touch <span class="title">new_file.md</span></h1>
-    <form class="create-file-text" method="POST">
-        <div>
-            {% csrf_token %}
-            {{ file_form.as_p }}
-            <button type="submit" class="btn btn-warning">Create</button>
+    <div class="row g-4">
+        <h1 class="create-file-text">touch <span class="title">new_file.md</span></h1>
+        <div class="col">
+            <form id="create-form" class="create-file-text" method="POST">
+                <div>
+                    {% csrf_token %}
+                    {{ file_form.as_p }}
+                </div>
+            </form>
+            <button type="button" data-url="{% url 'render_markdown' %}" id="preview-btn"
+                class="btn btn-outline-light">Preview</button>
         </div>
-    </form>
+        <div class="col">
+            <p class="create-file-text overflow-auto" id="id_preview">Content Preview</p>
+        </div>
+    </div>
+    <div class="row py-4">
+        <div class="col">
+            <button form="create-form" type="submit" class="create-btn">touch new_file.md</button>
+        </div>
+    </div>
 </div>
 {% endblock %}

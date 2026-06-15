@@ -14,4 +14,5 @@ urlpatterns = [
     path("owner/welcome/", views.welcome, name="welcome"),
     path("owner/files", OwnerFilesView.as_view(), name="owner_files"),
     path("files/create", CreateFileView.as_view(), name="create_file"),
+    path("render-markdown/", views.render_markdown, name="render_markdown")
 ]

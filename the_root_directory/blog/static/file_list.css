@@ -8,7 +8,7 @@
     list-style-type: none;
 }
 
-.description {
+.file-list-text {
     color: #e6edf3;
 }
 
@@ -36,23 +36,6 @@
 .pagination {
     color: #FAD500;
     margin-bottom: 10px;
-}
-
-.create-btn {
-    color: black;
-    background-color: #FAD500;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 2px;
-}
-
-.create-btn:hover {
-    background-color: black;
-    color: #FAD500;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 2px;
-    border: 1px solid #FAD500;
 }
 
 .content {

@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.db import transaction
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
@@ -28,7 +29,6 @@ class FilesView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "CHECK SOME ROOT FILES"
         context["description"] = "Learn something new today!"
         return context
 
@@ -39,7 +39,6 @@ class OwnerFilesView(View):
     def get(self, request):
         if request.user.is_authenticated:
             context = {"file_list": File.objects.filter(owner__user=request.user.id)}
-            context["title"] = "YOUR ROOT FILES"
             context["description"] = "Look what you have created!"
             return render(request, self.template_name, context)
         else:
@@ -64,7 +63,7 @@ class CreateFileView(View):
             form = self.get_form(request)
             if form["file_form"].is_valid():
                 file: File = form["file_form"].save(commit=False)
-                owner = Owner.objects.filter(user = request.user).first()
+                owner = Owner.objects.filter(user=request.user).first()
                 if owner is None:
                     messages.error(request, "The owner does not exist")
                     redirect("owner_files")
@@ -78,9 +77,24 @@ class CreateFileView(View):
             return redirect("login")
 
 
+REQUEST_LIMIT = 20
+TIME_WINDOW = 60
+
+
 def render_markdown(request):
-    if request.user.is_authenticated:
-        markdown_content = create_markdown_content(request.content)  # to check
+    if request.method == "POST" and request.user.is_authenticated:
+        client = request.user.id
+        key = f"rl:{client}"
+        count = cache.get(key)
+        if count is None:
+            cache.set(key, 1, TIME_WINDOW)
+        else:
+            if count >= REQUEST_LIMIT:
+                messages.warning(request, "Too much requests. Please wait before preview")
+                return JsonResponse({"error": "rate limited"}, status=429)
+            else:
+                cache.set(key, count + 1, TIME_WINDOW)
+        markdown_content = create_markdown_content(request.POST.get("content", ""))
         return JsonResponse({"content": markdown_content})
     else:
         return redirect("login")
