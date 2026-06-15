@@ -29,3 +29,21 @@ body {
     color:#e6edf3;
 
 }
+
+.create-btn {
+    color: black;
+    background-color: #FAD500;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid #FAD500;
+}
+
+.create-btn:hover {
+    background-color: black;
+    color: #FAD500;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid #FAD500;
+}

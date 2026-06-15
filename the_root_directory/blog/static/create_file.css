@@ -6,12 +6,19 @@
 }
 
 #id_title {
-    width: 650px;
+    width: 34em;
 }
 
 #id_content {
-    width: 70em;
-    min-height: 500px;
+    width: 34em;
+    min-height: 25em;
+}
+
+#id_preview {
+    width: 34em;
+    min-height: 28em;
+    border: 1px inset #FAD500;
+    max-height: 28em;
 }
 
 .errorlist {
