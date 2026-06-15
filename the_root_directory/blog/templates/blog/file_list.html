@@ -7,8 +7,8 @@
 
 {% block content %}
 <div class="content py-5 ps-4 pe-4">
-    <h1 class="title">{{title}}</h1>
-    <h4 class="description">{{ description }}</h4>
+    <h1 class="file-list-text">Check some <span class="title">root</span> files</h1>
+    <p class="file-list-text">{{ description }}</p>
     {% include 'blog/terminal.html' %}
     {% if page_obj %}
     <div class="pagination">
