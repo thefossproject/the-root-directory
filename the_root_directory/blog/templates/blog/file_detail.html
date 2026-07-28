@@ -7,7 +7,16 @@
 
 {% block content %}
 <div class="file-detail-container py-5 ps-4 pe-4">
-    <h1 class="file-title">{{ file.title }}</h1>
+    <div>
+        <h1 class="file-title">
+            {{ file.title }}
+            {% if update_file_url %}
+                <a href="{{ update_file_url }}">
+                    <i class="bi bi-pencil-fill fs-5 update-icon"></i>
+                </a>
+            {% endif %}
+        </h1>
+    </div>
     <h5>{{ file.owner.user.username }}</h5>
     <p>{{ file.created_at|date:"M j Y" }}</p>
     <hr>

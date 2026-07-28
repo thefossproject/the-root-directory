@@ -9,9 +9,9 @@
 {% block content %}
 <div class="container py-5">
     <div class="row g-4">
-        <h1 class="file-text">touch <span class="title">new_file.md</span></h1>
+        <h1 class="file-text">new_data<span class="title">>></span>file.md</h1>
         <div class="col">
-            <form id="create-form" class="file-text" method="POST">
+            <form id="update-form" class="file-text" method="POST">
                 <div>
                     {% csrf_token %}
                     {{ file_form.as_p }}
@@ -26,7 +26,7 @@
     </div>
     <div class="row py-4">
         <div class="col">
-            <button form="create-form" type="submit" class="create-btn">touch new_file.md</button>
+            <button form="update-form" type="submit" class="create-btn">new_data>>file.md</button>
         </div>
     </div>
 </div>

@@ -1,11 +1,15 @@
+from typing import Optional
+
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.db import transaction
 from django.http import JsonResponse
-from django.shortcuts import redirect, render
-from django.views.generic import DetailView, ListView, View
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
+from django.utils.text import slugify
+from django.views.generic import ListView, View
 
 from .forms import FileForm, OwnerForm, UserForm
 from .models import File, Owner
@@ -76,6 +80,58 @@ class CreateFileView(View):
         else:
             return redirect("login")
 
+class UpdateFileView(View):
+    template_name = "blog/update_file.html"
+
+    def update_file(self, current_file: File, updated_file: File) -> File:
+        changed_fields = []
+        if current_file.title != updated_file.title:
+            current_file.title = updated_file.title
+            changed_fields.append("title")
+
+            updated_slug = slugify(updated_file.title)
+            if current_file.slug != updated_slug:
+                current_file.slug = updated_slug
+                changed_fields.append("slug")
+
+        if current_file.content != updated_file.content:
+            current_file.content = updated_file.content
+            changed_fields.append("content")
+
+        if changed_fields:
+            current_file.save(update_fields=changed_fields)
+        return current_file
+
+    def get(self, request, pk):
+        if request.user.is_authenticated:
+            file_related = file_related_to_user(pk, request.user.id)
+            if file_related:
+                return render(
+                    request, self.template_name, {"file_form": FileForm(instance=file_related)}
+                )
+            else:
+                return redirect("owner_files")
+        else:
+            return redirect("login")
+
+    def post(self, request, pk):
+        if request.user.is_authenticated:
+            form = FileForm(request.POST)
+            if form.is_valid():
+                current_file = file_related_to_user(pk, request.user.id)
+                if current_file:
+                    file_form: File = form.instance
+                    updated_file = self.update_file(current_file, file_form)
+
+                    messages.success(request, f"File '{updated_file.title}' updated!")
+                    return redirect("owner_files")
+                else:
+                    return redirect("owner_files")
+            else:
+                return render(request, self.template_name, form)
+        else:
+            return redirect("login")
+
 
 REQUEST_LIMIT = 20
 TIME_WINDOW = 60
@@ -100,15 +156,23 @@ def render_markdown(request):
         return redirect("login")
 
 
-class FileDetailView(DetailView):
-    model = File
-    context_object_name = "file"
+def file_related_to_user(file_pk: int, user_id: int) -> Optional[File]:
+    current_file = File.objects.filter(owner__user=user_id, pk=file_pk).first()
+    return current_file
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        markdown_content = create_markdown_content(self.object.content)
-        context["markdown_content"] = markdown_content
-        return context
+
+class FileDetailView(View):
+    template_name = "blog/file_detail.html"
+
+    def get(self, request, pk, slug):
+        file = get_object_or_404(File, pk=pk, slug=slug)
+        markdown_content = create_markdown_content(file.content)
+        context = {"file": file, "markdown_content": markdown_content}
+        if request.user.is_authenticated:
+            file_related_to_auth_user = file_related_to_user(pk, request.user.id)
+            if file_related_to_auth_user:
+                context["update_file_url"] = reverse("update_file", kwargs={"pk": pk})
+        return render(request, self.template_name, context)
 
 
 class RegisterView(View):
