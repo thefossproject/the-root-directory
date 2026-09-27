@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/badge/license-MIT-00E5A0?style=flat-square)](LICENSE)
 [![Open Source](https://img.shields.io/badge/open-source-00E5A0?style=flat-square&logo=opensourceinitiative&logoColor=white)](https://opensource.org)
 [![GitHub Discussions](https://img.shields.io/badge/discussions-join-0AADFF?style=flat-square&logo=github)](https://github.com/thefossproject/the-root-directory/discussions)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-FF5C3A?style=flat-square)](https://github.com/thefossproject/the-root-directory/.github/CONTRIBUTING.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-FF5C3A?style=flat-square)](https://github.com/thefossproject/the-root-directory/blob/main/CONTRIBUTING.md)
 [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 </div>
  
