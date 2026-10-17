@@ -133,6 +133,18 @@ class UpdateFileView(View):
             return redirect("login")
 
 
+
+class DeleteFileView(View):
+    def post(self, request, pk):
+        if request.user.is_authenticated:
+            current_file = file_related_to_user(pk, request.user.id)
+            if current_file:
+                current_file.delete()
+                messages.success(request, "The file was deleted successfully!")
+            return redirect("owner_files")
+        return redirect("login")
+
+
 REQUEST_LIMIT = 20
 TIME_WINDOW = 60
 
@@ -171,6 +183,7 @@ class FileDetailView(View):
         if request.user.is_authenticated:
             file_related_to_auth_user = file_related_to_user(pk, request.user.id)
             if file_related_to_auth_user:
+                context["file_related_to_user"] = True
                 context["update_file_url"] = reverse("update_file", kwargs={"pk": pk})
         return render(request, self.template_name, context)
 

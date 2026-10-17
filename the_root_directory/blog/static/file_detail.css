@@ -17,3 +17,22 @@ pre {
 .update-icon {
     color: #FAD500;
 }
+
+.delete-form {
+    width: fit-content;
+    display: inline-block;
+}
+
+.delete-modal {
+    background-color: #0d1117;
+}
+
+.delete-modal-text {
+    color: #e6edf3;
+}
+
+.delete-icon {
+    color: #FAD500;
+    background-color: #0d1117;
+    border-style: none;
+}

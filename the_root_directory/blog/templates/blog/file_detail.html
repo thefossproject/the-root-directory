@@ -10,10 +10,30 @@
     <div>
         <h1 class="file-title">
             {{ file.title }}
-            {% if update_file_url %}
-                <a href="{{ update_file_url }}">
-                    <i class="bi bi-pencil-fill fs-5 update-icon"></i>
-                </a>
+            {% if file_related_to_user %}
+                <a href="{{ update_file_url }}"><i class="bi bi-pencil-fill fs-5 update-icon"></i></a>
+                <form action="{% url 'delete_file' file.pk %}" id="delete-form-{{ file.pk }}" class="delete-form" method="post">
+                    {% csrf_token %}
+                    <button type="button" class="bi bi-trash-fill fs-5 delete-icon" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ file.pk }}"></button>
+                </form>
+                <div class="modal fade" id="deleteModal-{{ file.pk }}" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="delete-modal modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 delete-modal-text" id="modalLabel">Delete File</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1 class="delete-modal-text fs-5">Do you want to delete <strong>'{{ file.title }}'</strong>?</h1>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" form="delete-form-{{ file.pk }}" class="btn btn-warning">Delete</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
             {% endif %}
         </h1>
     </div>
